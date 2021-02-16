@@ -31,3 +31,18 @@ If you've written a function for `LeetCode/Easy/addBinary.js` and want to test t
 ## Not Implemented
 
 There are 23 problems that involved Linked Lists/Binary Trees that there wasn't an easy way to port test examples to.  For this reason, they have been moved into `LeetCode/Easy/todo` and `LeetCode/Easy/todo/tests` respectively.
+
+## Setup Files
+- [urls.text](./setup/urls.txt) is a list of problems marked Easy in Leetcode that don't require a subscription to view
+- [crawler.js](./setup/crawler.js) uses `puppeteer` to navigate to each url in `urls.txt`, set the local_storage key `global_lang` to `Javascript` to ensure that the JavaScript version of the problem is loaded, wait for the page to load, and save the html file to the `out` directory
+- [scraper.js](./setup/scraper.js) uses `jsdom` to pull relevant pieces of information from the html files and creates a problem file and test file for the problem file
+
+**Note**: `puppeteer` and `jsdom` are necessary for using these setup files and have been removed from the `package.json` as they are no longer needed.  Should these files be needed for use in the future, `jsdom` and `puppeteer` will have to be reinstalled.
+
+## To use repo
+- Fork and clone
+- Run npm install to install devDependencies (mocha and chai)
+- Choose a problem
+- Implement the functionality using the code signature provided
+- Unskip tests for that problem by removing `.todo` in the describe of the test file
+- From the root of the repo, type the command `npm run test`
