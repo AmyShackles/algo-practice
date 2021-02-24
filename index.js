@@ -4,7 +4,7 @@ const Mocha = require("mocha");
 const mocha = new Mocha({
     reporter: "list",
 });
-const testDir = "./LeetCode/Easy/tests";
+const testDir = "./LeetCode/Easy/JavaScript/tests";
 
 fs.readdirSync(testDir)
     .filter(function (file) {
