@@ -3,8 +3,11 @@ const { JSDOM } = require("jsdom");
 
 function getJSFileName(filename) {
     return filename
-        .replace(/-(\w)/g, function(match, p1) { return p1.toUpperCase(); })
-        .replace(/\s/g, '')
+        .replace(/-(\w)/g, function (match, p1) {
+            return p1.toUpperCase();
+        })
+        .replace(/\s/g, "")
+        .replace(/\.html/, "");
 }
 
 async function convertToJSON(directoryPath) {
@@ -27,7 +30,7 @@ async function scrape(page, fileName) {
     let defs = Array.from(dom.querySelectorAll(".cm-def"));
     const functionName = defs[0].textContent;
     const params = defs.slice(1).map(a => a.textContent);
-    // await createFile(functionName, fileName, url, params);
+    await createFile(functionName, fileName, url, params);
     await createTestFile(functionName, fileName, examples);
     } else {
         return;
